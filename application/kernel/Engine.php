@@ -35,14 +35,15 @@ use Doctrine\ORM\Tools\Setup;
 /* --------------------------- engine class ------------------------*/
 
 // security check - must be included in all scripts
-if (! /**
+//if (! 
+/**
  * Description for $GLOBALS
  * @global entry point $GLOBALS['chisimba_entry_point_run']
  * @name   $kewl_entry_point_run
  */
-$GLOBALS ['chisimba_entry_point_run']) {
-    die ( "You cannot view this page directly" );
-}
+//$GLOBALS ['chisimba_entry_point_run']) {
+//    die ( "You cannot view this page directly" );
+//}
 // end security check
 
 /**
@@ -162,7 +163,7 @@ class engine {
         //var_dump($requestedModule);
         $this->serviceData = json_encode(array($requestedAction, $requestedModule));
         //var_dump($this->serviceData);
-        $task= $this->gmc->addTask("reverse", "foo", $this->serviceData);
+        $task= $this->gmc->addTask("process", $this->serviceData);
         //return $this->serviceData;
         if (! $this->gmc->runTasks())
         {
@@ -217,7 +218,7 @@ class engine {
     
     public function reverse_complete($task)
     {
-        echo "COMPLETE: " . $task->jobHandle() . ", " . $task->data() . "\n";
+        echo $task->data();
     }
     
     public function reverse_fail($task)
